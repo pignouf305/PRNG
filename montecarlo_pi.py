@@ -1,5 +1,6 @@
 from PRNG import *
 import matplotlib.pyplot as plt
+import numpy as np
 
 def main():
     prng = prng_bbs()
@@ -27,10 +28,14 @@ def main():
     ax.set_aspect('equal', adjustable='box')
     plt.show()
 
-
-    plt.plot(pi)    
+    pi_exact = np.pi*np.ones(len(pi));
+    plt.plot(pi, 'b--')    
+    plt.plot(pi_exact, 'r-')    
     plt.title('Pi convergence')
+    plt.grid(True)
     plt.show()
+    
+    print(np.mean(pi[len(pi)//2:len(pi)]))
 
 if __name__ == '__main__':
     main()
