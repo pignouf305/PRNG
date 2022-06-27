@@ -5,6 +5,11 @@ import inspect
 
 
 def mc_area(f,a,b, minY=None, maxY=None, N = 10**4, plot=False, integExact=None):
+    '''
+    Takes in a function f, horizontal limits a and b,
+    and optionally : vertical limits minY and maxY, number of points N, boolean plot to enable graph plotting, and integExact the exact value of the integral for graph purposes
+    returns the approximation of the integral.
+    '''
     # Init
     if minY == None:
         minY = f(a)
@@ -52,7 +57,6 @@ def mc_area(f,a,b, minY=None, maxY=None, N = 10**4, plot=False, integExact=None)
         plt.title('Convergence')
         plt.grid(True)
         plt.show()
-
 
     return integral
 

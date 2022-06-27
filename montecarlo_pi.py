@@ -3,12 +3,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def main():
+    # Init
     prng = prng_bbs()
+    
+    # Successive estimations
     for n in range(20):
         xc, yc, xs, ys, pi = [], [], [], [], []
         N = int(1.5e4)
         pointsInSquare = 0
         pointsInCircle = 0
+        
+        # N points
         for i in range(N):
             x=randToInterval(prng(), -1, 1)
             y=randToInterval(prng(), -1, 1)
@@ -19,7 +24,8 @@ def main():
                 xs.append(x); ys.append(y)
             pointsInSquare = pointsInSquare + 1    
             pi.append(4*pointsInCircle/pointsInSquare)
-
+        
+        # Plot convergence of this estimation
         pi_exact = np.pi*np.ones(len(pi));
         plt.plot(pi, 'b--')    
         plt.plot(pi_exact, 'r-')    
@@ -29,6 +35,7 @@ def main():
         print(np.mean(pi[len(pi)//2:len(pi)]))
         
     
+    # Plot
     plt.show()
         
     fig = plt.figure()
