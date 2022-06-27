@@ -25,8 +25,8 @@ def mc_area(f,a,b, minY=None, maxY=None, N = 10**4, plot=False, integExact=None)
     for i in range(N):
         x=randToInterval(prng(), a, b)
         y=randToInterval(prng(), minY, maxY)
-        if y <= f(x):
-            pointsBelow = pointsBelow+1
+        if (math.copysign(1,y) == math.copysign(1, f(x))) & (abs(y) <= abs(f(x))):
+            pointsBelow = pointsBelow+math.copysign(1,y)
             xc.append(x); yc.append(y)
         else :
             xs.append(x); ys.append(y)
@@ -48,6 +48,7 @@ def mc_area(f,a,b, minY=None, maxY=None, N = 10**4, plot=False, integExact=None)
         plt.plot(xc, yc,'.r')
         plt.plot(xs, ys,'.b')
         plt.title('Approximation of the integral of '+ funcDesc)
+        plt.grid(True)
         plt.show()
         
         plt.plot(integrals, 'b--')
